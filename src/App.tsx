@@ -1,43 +1,22 @@
-import { CategoriesContainer } from "./components/index";
-
-export type CategoriesProps = {
-  id: number;
-  title: string;
-  imageUrl: string;
-};
+import { Routes, Route } from "react-router-dom";
+import {
+  Home,
+  Navigation,
+  ContactMainPage,
+  ShopMainPage,
+  SigninMainPage,
+} from "./components/index";
 
 const App = () => {
-  const categories: CategoriesProps[] = [
-    {
-      id: 1,
-      title: "Hats",
-      imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
-    },
-    {
-      id: 2,
-      title: "Jackets",
-      imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
-    },
-    {
-      id: 3,
-      title: "Sneakers",
-      imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
-    },
-    {
-      id: 4,
-      title: "Womens",
-      imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
-    },
-    {
-      id: 5,
-      title: "Mens",
-      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
-    },
-  ];
   return (
-    <>
-      <CategoriesContainer categories={categories} />
-    </>
+    <Routes>
+      <Route path="/" element={<Navigation />}>
+        <Route index element={<Home />} />
+        <Route path="shop" element={<ContactMainPage />} />
+        <Route path="contact" element={<ShopMainPage />} />
+        <Route path="signin" element={<SigninMainPage />} />
+      </Route>
+    </Routes>
   );
 };
 

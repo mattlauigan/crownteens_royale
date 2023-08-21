@@ -1,4 +1,17 @@
-import CategoryItem from "./category-item/category-item.component";
 import CategoriesContainer from "./categories-container/categories-container.component";
+import CategoryItem from "./category-item/category-item.component";
+import Home from "./routes/home/Home";
+import Navigation from "./routes/navigation/nav-component";
+import SigninMainPage from "./routes/pages/SigninMainPage";
+import ShopMainPage from "./routes/pages/ShopMainPage";
+import ContactMainPage from "./routes/pages/ContactMainPage";
 
-export { CategoryItem, CategoriesContainer };
+export {
+  CategoriesContainer,
+  CategoryItem,
+  Home,
+  Navigation,
+  SigninMainPage,
+  ShopMainPage,
+  ContactMainPage,
+};
