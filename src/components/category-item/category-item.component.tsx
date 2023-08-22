@@ -1,5 +1,3 @@
-// import "./category-item.style.scss";
-
 type CategoryData = {
   title: string;
   imageUrl: string;
