@@ -4,13 +4,6 @@ import StoreAuthUserWithEmailAndPassword, {
   SignUpFormData,
 } from "../../../utils/firebase/firebase-utils";
 
-// type SignUpFormData = {
-//   displayName?: string;
-//   email?: string;
-//   password?: string;
-//   confirmPassword?: string;
-// };
-
 const SignupFormPage = ({
   displayName,
   email,
@@ -22,20 +15,23 @@ const SignupFormPage = ({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setSignUpData({ ...SignUpData!, [name]: value });
+    // console.log(name, "::", value);
+    console.log(name);
   };
 
-  const handleSubmit = async (event: SubmitEvent) => {
-    event.preventDefault;
+  const handleSubmit = async (event: React.FormEvent<SignUpFormData>) => {
+    event.preventDefault();
+    const e = event.currentTarget;
 
-    if (password !== confirmPassword) {
-      console.log("incorrect password");
+    console.log(e.password);
+    console.log(e.confirmPassword);
+    if (e.password != e.confirmPassword) {
       return false;
     }
 
     const result = await StoreAuthUserWithEmailAndPassword(SignUpData!);
     console.log(result);
-
-    return true;
+    // return true;
   };
 
   return (
@@ -73,6 +69,7 @@ const SignupFormPage = ({
             id="password"
             onChange={handleChange}
             value={password}
+            minLength={8}
           />
         </div>
         <div>
@@ -84,6 +81,7 @@ const SignupFormPage = ({
             id="confirmPassword"
             onChange={handleChange}
             value={confirmPassword}
+            minLength={8}
           />
         </div>
         <button type="submit">Sign Up</button>
