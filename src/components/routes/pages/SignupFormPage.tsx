@@ -1,87 +1,140 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import StoreAuthUserWithEmailAndPassword, {
-  SignUpWithEmailData,
   SignUpFormData,
 } from "../../../utils/firebase/firebase-utils";
 
-const SignupFormPage = ({
-  displayName,
-  email,
-  password,
-  confirmPassword,
-}: SignUpFormData) => {
-  const [SignUpData, setSignUpData] = useState<SignUpWithEmailData>();
+const SignupFormPage = () => {
+  const [SignUpData, setSignUpData] = useState<SignUpFormData>({
+    displayName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setSignUpData({ ...SignUpData!, [name]: value });
     // console.log(name, "::", value);
-    console.log(name);
   };
 
   const handleSubmit = async (event: React.FormEvent<SignUpFormData>) => {
     event.preventDefault();
     const e = event.currentTarget;
 
-    console.log(e.password);
-    console.log(e.confirmPassword);
-    if (e.password != e.confirmPassword) {
-      return false;
+    try {
+      const { user } = await StoreAuthUserWithEmailAndPassword(SignUpData!);
+      console.log(user);
+      console.log(SignUpData.password);
+    } catch (error) {
+      console.log("There is an error creating the user", error);
     }
 
-    const result = await StoreAuthUserWithEmailAndPassword(SignUpData!);
-    console.log(result);
     // return true;
   };
 
   return (
     <div>
       <h1>Sign Up with you Email</h1>
-      <form onSubmit={() => handleSubmit}>
+      <form onSubmit={async () => handleSubmit}>
         <div>
-          <label htmlFor="displayName">Name</label>
+          <label
+            htmlFor="displayName"
+            style={{
+              width: "150px",
+              padding: "10px 0 0 5px",
+              display: "inline-block",
+              textAlign: "left",
+            }}
+          >
+            Name:
+          </label>
           <input
             required
             type="text"
             name="displayName"
             id="displayName"
             onChange={handleChange}
-            value={displayName}
+            value={SignUpData.displayName}
+            minLength={3}
+            maxLength={20}
+            style={{
+              height: "30px",
+              border: "1.5px solid black",
+              borderRadius: "5px",
+              padding: "10px",
+              font: "Open Sans Condensed , sans-serif",
+              fontSize: "13px",
+              letterSpacing: "1px",
+            }}
           />
         </div>
         <div>
-          <label htmlFor="displayName">Email Address</label>
+          <label
+            htmlFor="email"
+            style={{
+              width: "150px",
+              padding: "10px 0 0 5px",
+              textAlign: "left",
+              display: "inline-block",
+            }}
+          >
+            Email Address:
+          </label>
           <input
             required
             type="email"
             name="email"
             id="email"
             onChange={handleChange}
-            value={email}
+            value={SignUpData.email}
+            minLength={3}
+            maxLength={50}
           />
         </div>
         <div>
-          <label htmlFor="displayName">Password</label>
+          <label
+            htmlFor="password"
+            style={{
+              width: "150px",
+              padding: "10px 0 0 5px",
+              display: "inline-block",
+              textAlign: "left",
+            }}
+          >
+            Password:
+          </label>
           <input
             required
             type="password"
             name="password"
             id="password"
             onChange={handleChange}
-            value={password}
+            value={SignUpData.password}
             minLength={8}
+            maxLength={20}
           />
         </div>
         <div>
-          <label htmlFor="displayName">Confirm Password</label>
+          <label
+            htmlFor="confirmPassword"
+            style={{
+              width: "150px",
+              padding: "10px 0 0 5px",
+              display: "inline-block",
+              textAlign: "left",
+            }}
+          >
+            Confirm Password:
+          </label>
           <input
             required
             type="password"
             name="confirmPassword"
             id="confirmPassword"
             onChange={handleChange}
-            value={confirmPassword}
+            value={SignUpData.confirmPassword}
             minLength={8}
+            maxLength={20}
           />
         </div>
         <button type="submit">Sign Up</button>

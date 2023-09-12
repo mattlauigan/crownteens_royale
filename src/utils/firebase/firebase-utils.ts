@@ -19,10 +19,6 @@ export type SignUpFormData = {
   confirmPassword?: string;
 };
 
-export type SignUpWithEmailData = {
-  data: SignUpFormData;
-};
-
 const firebaseConfig = {
   apiKey: "AIzaSyA396UJn9xkUZBCXvXUJJF9xe4u89JfFBg",
   authDomain: "crownteensroyale.firebaseapp.com",
@@ -70,11 +66,11 @@ export const StoreUserDocumentsFromAuth = async (userAuth: userData) => {
   }
 };
 
-const StoreAuthUserWithEmailAndPassword = async (Auth: SignUpWithEmailData) => {
-  const { email, password } = Auth.data;
-
-  if (!email || !password) return false;
-
-  return await createUserWithEmailAndPassword(auth, email, password);
+const StoreAuthUserWithEmailAndPassword = async ({
+  email,
+  password,
+}: SignUpFormData) => {
+  return await createUserWithEmailAndPassword(auth, email!, password!);
 };
+
 export default StoreAuthUserWithEmailAndPassword;
