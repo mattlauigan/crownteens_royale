@@ -3,8 +3,8 @@ import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
-  UserCredential,
   User,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -12,8 +12,11 @@ export type userData = {
   user: User;
 };
 
-type error = {
-  message: error;
+export type SignUpFormData = {
+  displayName?: string;
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
 };
 
 const firebaseConfig = {
@@ -25,7 +28,8 @@ const firebaseConfig = {
   appId: "1:739424560142:web:e18c73b5ebb908b6ac085f",
 };
 
-const FireBaseApp = initializeApp(firebaseConfig);
+//**const FireBaseApp = initializeApp(firebaseConfig); *//
+initializeApp(firebaseConfig);
 
 const GoogleProvider = new GoogleAuthProvider();
 GoogleProvider.setCustomParameters({
@@ -39,12 +43,14 @@ export const SignInWithGooglePopUp = () => {
 
 const db = getFirestore();
 
-export const CreateUserDocumentsFromAuth = async (userAuth: userData) => {
+export const StoreUserDocumentsFromAuth = async (userAuth: userData) => {
   if (userAuth.user.uid) {
-    const userDocRef = doc(db, "users", userAuth.user.uid);
+    const { uid, displayName, email } = userAuth.user;
+
+    const userDocRef = doc(db, "users", uid);
     const userSnapshot = await getDoc(userDocRef);
+
     if (!userSnapshot.exists()) {
-      const { displayName, email } = userAuth.user;
       const createdAt = new Date();
 
       try {
@@ -54,8 +60,17 @@ export const CreateUserDocumentsFromAuth = async (userAuth: userData) => {
           createdAt,
         });
       } catch (error) {
-        console.log("There are error Signing with google");
+        console.log("There an error signing with google");
       }
     }
   }
 };
+
+const StoreAuthUserWithEmailAndPassword = async ({
+  email,
+  password,
+}: SignUpFormData) => {
+  return await createUserWithEmailAndPassword(auth, email!, password!);
+};
+
+export default StoreAuthUserWithEmailAndPassword;

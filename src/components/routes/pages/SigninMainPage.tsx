@@ -1,22 +1,21 @@
-import { resolve } from "path";
+import SignupFormPage from "./SignupFormPage";
 import {
   SignInWithGooglePopUp,
-  CreateUserDocumentsFromAuth,
+  StoreUserDocumentsFromAuth,
   userData,
 } from "../../../utils/firebase/firebase-utils";
-
-import { UserCredential, User } from "firebase/auth";
 
 const SigninMainPage = () => {
   const GooglePopup = async () => {
     const user: userData = await SignInWithGooglePopUp();
-    CreateUserDocumentsFromAuth(user);
+    StoreUserDocumentsFromAuth(user);
   };
 
   return (
     <div>
       <h3>Sign in Page</h3>
       <button onClick={GooglePopup}>Sign in with Google</button>
+      <SignupFormPage />
     </div>
   );
 };
