@@ -12,7 +12,8 @@
   "dependencies": {
     "firebase": "^10.2.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
     "@types/babel__core": "^7.20.1",
@@ -24,6 +25,7 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "sass": "^1.77.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
