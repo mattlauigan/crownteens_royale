@@ -1,7 +1,8 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import StoreAuthUserWithEmailAndPassword, {
   SignUpFormData,
 } from "../../../utils/firebase/firebase-utils";
+import FormInput from "../../form-input";
 
 const SignupFormPage = () => {
   const [SignUpData, setSignUpData] = useState<SignUpFormData>({
@@ -19,7 +20,7 @@ const SignupFormPage = () => {
 
   const handleSubmit = async (event: React.FormEvent<SignUpFormData>) => {
     event.preventDefault();
-    const e = event.currentTarget;
+    // const e = event.currentTarget;
 
     try {
       const { user } = await StoreAuthUserWithEmailAndPassword(SignUpData!);
@@ -36,18 +37,9 @@ const SignupFormPage = () => {
     <div>
       <h1>Sign Up with you Email</h1>
       <form onSubmit={async () => handleSubmit}>
+        <FormInput></FormInput>
         <div>
-          <label
-            htmlFor="displayName"
-            style={{
-              width: "150px",
-              padding: "10px 0 0 5px",
-              display: "inline-block",
-              textAlign: "left",
-            }}
-          >
-            Name:
-          </label>
+          <label htmlFor="displayName">Name:</label>
           <input
             required
             type="text"
@@ -57,29 +49,19 @@ const SignupFormPage = () => {
             value={SignUpData.displayName}
             minLength={3}
             maxLength={20}
-            style={{
-              height: "30px",
-              border: "1.5px solid black",
-              borderRadius: "5px",
-              padding: "10px",
-              font: "Open Sans Condensed , sans-serif",
-              fontSize: "13px",
-              letterSpacing: "1px",
-            }}
+            // style={{
+            //   height: "30px",
+            //   border: "1.5px solid black",
+            //   borderRadius: "5px",
+            //   padding: "10px",
+            //   font: "Open Sans Condensed , sans-serif",
+            //   fontSize: "13px",
+            //   letterSpacing: "1px",
+            // }}
           />
         </div>
         <div>
-          <label
-            htmlFor="email"
-            style={{
-              width: "150px",
-              padding: "10px 0 0 5px",
-              textAlign: "left",
-              display: "inline-block",
-            }}
-          >
-            Email Address:
-          </label>
+          <label htmlFor="email">Email Address:</label>
           <input
             required
             type="email"
@@ -92,17 +74,7 @@ const SignupFormPage = () => {
           />
         </div>
         <div>
-          <label
-            htmlFor="password"
-            style={{
-              width: "150px",
-              padding: "10px 0 0 5px",
-              display: "inline-block",
-              textAlign: "left",
-            }}
-          >
-            Password:
-          </label>
+          <label htmlFor="password">Password:</label>
           <input
             required
             type="password"
@@ -117,12 +89,12 @@ const SignupFormPage = () => {
         <div>
           <label
             htmlFor="confirmPassword"
-            style={{
-              width: "150px",
-              padding: "10px 0 0 5px",
-              display: "inline-block",
-              textAlign: "left",
-            }}
+            // style={{
+            //   width: "150px",
+            //   padding: "10px 0 0 5px",
+            //   display: "inline-block",
+            //   textAlign: "left",
+            // }}
           >
             Confirm Password:
           </label>

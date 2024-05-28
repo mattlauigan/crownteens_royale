@@ -1,6 +1,5 @@
-// import "./categories-container.style.scss";
 import { CategoryItem } from "..";
-import { CategoriesProps } from "../routes/home/Home";
+import { CategoriesProps } from "routes/home/Home";
 
 interface props extends Object {
   categories: CategoriesProps[];

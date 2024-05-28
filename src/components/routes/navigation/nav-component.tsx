@@ -1,5 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import logo from "../../../assets/crownteensLogo2.svg";
+// import logo from "assets/crownteensLogo2.svg";
 
 const Navigation = () => {
   return (
