@@ -1,0 +1,18 @@
+.formInput {
+  label {
+    width: 150px;
+    padding: 10px 0 0 5px;
+    display: inline-block;
+    text-align: left;
+  }
+
+  input {
+    height: 30px;
+    border: 1.5px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    font: Open Sans Condensed, sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+}

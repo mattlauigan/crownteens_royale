@@ -1,4 +1,5 @@
-import { CategoriesContainer } from "../../../components/index";
+// import { CategoriesContainer } from "../../../components/index";
+import { CategoriesContainer } from "../../../components";
 import { Outlet } from "react-router";
 
 export type CategoriesProps = {
