@@ -1,9 +1,9 @@
 import { CategoryItem } from "..";
 import { CategoriesProps } from "routes/home/Home";
 
-interface props extends Object {
+type props = {
   categories: CategoriesProps[];
-}
+};
 
 const CategoriesContainer = (props: props) => {
   return (
