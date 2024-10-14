@@ -16,10 +16,14 @@ const SigninMainPage = () => {
   };
 
   return (
-    <div>
-      <h3>Sign in Page</h3>
-      <button onClick={GooglePopup}>Sign in with Google</button>
+    <div className="signin-main-container">
+      
+      
       <SignupFormPage />
+      <h3 className="half-or">or</h3>
+      <div className="google-signin">
+      <button onClick={GooglePopup}>Sign in with Google</button>
+      </div>
     </div>
   );
 };

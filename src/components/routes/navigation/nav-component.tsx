@@ -1,17 +1,30 @@
 import { Outlet, Link } from "react-router-dom";
 import logo from "../../../assets/crownteensLogo2.svg";
-import cart from "../../../assets/cart.svg";
 import useSignIn from "../../../utils/store/signin-utils";
-import { useEffect, useState } from "react";
+import NavCartHover from "./nav-cart-hover-component";
+import { CartDataType } from "ts/types/component";
+
 
 const Navigation = () => {
+  const SampleData: CartDataType[] = [
+    {
+      id: 1,
+      name: "Sample Product",
+      productdetail: "This is something",
+      quantity: 1,
+      price: 10.99,
+    },
+    {
+      id: 2,
+      name: "Sample Product 2",
+      productdetail: "This is something 2",
+      quantity: 3,
+      price: 10.29,
+    },
+  ];
   const isLoggedIn = useSignIn((state) => state.isLoggedIn);
   const userDisplayName = useSignIn((state) => state.userDisplayName);
-  const [cartNumber, setCartNumber] = useState<number>(0);
 
-  useEffect(() => {
-    if (isLoggedIn) setCartNumber(1);
-  }, [isLoggedIn]);
 
   return (
     <>
@@ -27,22 +40,11 @@ const Navigation = () => {
           <Link to="shop">SHOP</Link>
           <Link to="contact">CONTACT</Link>
           {isLoggedIn ? (
-            <span className="user-cart">
-              <strong>{userDisplayName}</strong>
-              <Link to="cartpage">
-                <img src={cart} alt="cart" />
-              </Link>
-              <ul>
-                <li>asd</li>
-                <li>asd</li>
-                <li>sda</li>
-                <li>asdasd</li>
-              </ul>
-              <p>{cartNumber}</p>
-            </span>
+            <strong>{userDisplayName}</strong>
           ) : (
             <Link to="signin">SIGN IN</Link>
           )}
+          <NavCartHover items={SampleData} />
         </div>
       </div>
       <div>

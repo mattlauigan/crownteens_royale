@@ -27,39 +27,41 @@ const SignupFormPage = () => {
     } catch (error) {
       console.log("There is an error creating the user", error);
     }
-
   };
 
   return (
-    <div>
+    <div className="signup-form">
       <h1>Sign Up with you Email</h1>
       <form onSubmit={async () => handleSubmit}>
-        <FormInput
-          name="displayName"
-          label="Name:"
-          onChange={handleChange}
-          value={SignUpData.displayName!}
-        />
-        <FormInput
-          name="email"
-          label="Email Address:"
-          onChange={handleChange}
-          value={SignUpData.email!}
-        />
-        <FormInput
-          name="password"
-          label="Password:"
-          onChange={handleChange}
-          value={SignUpData.password!}
-          hidden
-        />
-        <FormInput
-          name="confirmPassword"
-          label="Confirm Password:"
-          onChange={handleChange}
-          value={SignUpData.confirmPassword!}
-          hidden
-        />
+        <div className="form-card">
+          <FormInput
+            name="displayName"
+            label="Name:"
+            onChange={handleChange}
+            value={SignUpData.displayName!}
+          />
+          <FormInput
+            name="email"
+            label="Email Address:"
+            onChange={handleChange}
+            value={SignUpData.email!}
+          />
+          <FormInput
+            name="password"
+            label="Password:"
+            onChange={handleChange}
+            value={SignUpData.password!}
+            hidden
+          />
+          <FormInput
+            name="confirmPassword"
+            label="Confirm Password:"
+            onChange={handleChange}
+            value={SignUpData.confirmPassword!}
+            hidden
+          />
+        </div>
+
         <button type="submit">Sign Up</button>
       </form>
     </div>

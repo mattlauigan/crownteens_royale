@@ -1,0 +1,74 @@
+.signin-main-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  // background-color: blue;
+  border: 2px blue solid;
+
+  .half-or {
+    position: absolute;
+    // background-color: white;
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+    margin-top: 5rem;
+
+
+  }
+
+
+
+  .signup-form {
+    // background-color: green;
+    width: 100vw;
+    flex-direction: column;
+
+
+
+
+    .form-card {
+
+      margin-block: 2rem;
+
+      .formInput {
+        margin-block: 1rem;
+
+        input[type=text],
+        input[type=password] {
+          height: 2rem;
+
+          &:focus {
+            outline: none
+          }
+        }
+      }
+    }
+
+    button {
+      cursor: pointer;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      background-color: transparent;
+      border: .2rem solid black;
+      padding-inline: 2rem;
+      padding-block: .7rem;
+
+      &:hover {
+        border: none;
+        background-color: black;
+        border: .2rem solid white;
+        color: white
+      }
+
+    }
+  }
+
+
+
+  .google-signin {
+    
+    width: 100vw;
+  }
+
+}

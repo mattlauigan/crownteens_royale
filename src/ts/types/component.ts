@@ -14,3 +14,12 @@ export type FormProps = {
   inputError?: string;
   readOnly?: boolean;
 };
+
+
+export type CartDataType = {
+  id: number;
+  name: string;
+  productdetail: string;
+  quantity: number;
+  price: number;
+};
